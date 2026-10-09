@@ -7,6 +7,7 @@ import RegisterPage from '../pages/RegisterPage';
 import CategoriesPage from '../pages/CategoriesPage';
 import TransactionsPage from '../pages/TransactionsPage';
 import BudgetsPage from '../pages/BudgetsPage';
+import AnalyticsPage from '../pages/AnalyticsPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
 
@@ -30,8 +31,7 @@ export const AppRouter = () => {
             <Route path="budgets" element={<BudgetsPage />} />
 
             {/* Module Placeholders mapped to LandingPage */}
-
-            <Route path="analytics" element={<LandingPage />} />
+            <Route path="analytics" element={<AnalyticsPage />} />
             <Route path="recurring" element={<LandingPage />} />
             <Route path="savings" element={<LandingPage />} />
             <Route path="profile" element={<LandingPage />} />
