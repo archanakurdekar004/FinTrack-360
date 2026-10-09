@@ -6,6 +6,7 @@ import transactionRoutes from './transactionRoutes.js';
 import budgetRoutes from './budgetRoutes.js';
 import analyticsRoutes from './analyticsRoutes.js';
 import goalRoutes from './goalRoutes.js';
+import recurringTransactionRoutes from './recurringTransactionRoutes.js';
 
 const router = Router();
 
@@ -17,6 +18,7 @@ router.use('/transactions', transactionRoutes);
 router.use('/budgets', budgetRoutes);
 router.use('/analytics', analyticsRoutes);
 router.use('/goals', goalRoutes);
+router.use('/recurring-transactions', recurringTransactionRoutes);
 
 
 

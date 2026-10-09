@@ -21,6 +21,14 @@ export const authService = {
     return await api.get('/auth/me');
   },
 
+  updateProfile: async (data) => {
+    return await api.put('/auth/profile', data);
+  },
+
+  updatePassword: async (data) => {
+    return await api.put('/auth/password', data);
+  },
+
   logout: () => {
     localStorage.removeItem('fintrack_token');
     localStorage.removeItem('fintrack_user');

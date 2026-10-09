@@ -87,6 +87,37 @@ export class AuthService {
     }
     return user;
   }
+
+  /**
+   * Updates current user profile.
+   */
+  static async updateProfile(userId, data) {
+    const user = await User.findByIdAndUpdate(userId, data, { new: true, runValidators: true });
+    if (!user) {
+      throw ApiError.notFound('Authenticated user profile not found.');
+    }
+    return user;
+  }
+
+  /**
+   * Updates user password.
+   */
+  static async updatePassword(userId, currentPassword, newPassword) {
+    const user = await User.findById(userId).select('+password');
+    if (!user) {
+      throw ApiError.notFound('Authenticated user profile not found.');
+    }
+
+    const isMatch = await user.comparePassword(currentPassword);
+    if (!isMatch) {
+      throw ApiError.badRequest('Incorrect current password.');
+    }
+
+    user.password = newPassword;
+    await user.save();
+    
+    return true;
+  }
 }
 
 export default AuthService;

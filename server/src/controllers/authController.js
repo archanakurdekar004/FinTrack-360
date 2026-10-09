@@ -71,3 +71,26 @@ export const getMe = async (req, res, next) => {
     next(error);
   }
 };
+
+export const updateProfile = async (req, res, next) => {
+  try {
+    const user = await AuthService.updateProfile(req.user.userId, req.body);
+    return res.status(200).json(
+      new ApiResponse(200, { user: user.toJSON() }, 'Profile updated successfully')
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updatePassword = async (req, res, next) => {
+  try {
+    await AuthService.updatePassword(req.user.userId, req.body.currentPassword, req.body.newPassword);
+    return res.status(200).json(
+      new ApiResponse(200, null, 'Password updated successfully')
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+

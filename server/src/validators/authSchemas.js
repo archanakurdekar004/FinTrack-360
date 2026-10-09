@@ -32,3 +32,13 @@ export const loginSchema = z.object({
     .string({ required_error: 'Password is required' })
     .min(1, 'Password cannot be empty'),
 });
+
+export const updateProfileSchema = z.object({
+  name: z.string().trim().min(2, 'Full name must be at least 2 characters long').max(50, 'Full name cannot exceed 50 characters').optional(),
+  currency: z.enum(['USD', 'EUR', 'GBP', 'INR', 'CAD', 'AUD']).optional(),
+});
+
+export const updatePasswordSchema = z.object({
+  currentPassword: z.string({ required_error: 'Current password is required' }).min(1, 'Current password cannot be empty'),
+  newPassword: z.string({ required_error: 'New password is required' }).min(6, 'New password must be at least 6 characters long'),
+});

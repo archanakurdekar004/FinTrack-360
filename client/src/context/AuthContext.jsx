@@ -95,6 +95,18 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
   };
 
+  const updateProfile = async (data) => {
+    const response = await authService.updateProfile(data);
+    const updatedUser = response.data.user;
+    setUser(updatedUser);
+    localStorage.setItem('fintrack_user', JSON.stringify(updatedUser));
+    return response;
+  };
+
+  const updatePassword = async (data) => {
+    return await authService.updatePassword(data);
+  };
+
   const value = {
     user,
     token,
@@ -103,6 +115,8 @@ export const AuthProvider = ({ children }) => {
     login,
     register,
     logout,
+    updateProfile,
+    updatePassword,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

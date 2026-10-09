@@ -62,6 +62,11 @@ const transactionSchema = new mongoose.Schema(
       trim: true,
       maxlength: [500, 'Notes cannot exceed 500 characters'],
     },
+    recurringTransactionId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'RecurringTransaction',
+      index: true,
+    }
   },
   {
     timestamps: true,
@@ -72,6 +77,7 @@ const transactionSchema = new mongoose.Schema(
 transactionSchema.index({ userId: 1, date: -1 });
 transactionSchema.index({ userId: 1, categoryId: 1 });
 transactionSchema.index({ userId: 1, type: 1 });
+transactionSchema.index({ recurringTransactionId: 1, date: 1 }, { unique: true, sparse: true });
 
 export const Transaction = mongoose.model('Transaction', transactionSchema);
 export default Transaction;
