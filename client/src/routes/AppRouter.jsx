@@ -5,6 +5,7 @@ import LandingPage from '../pages/LandingPage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import CategoriesPage from '../pages/CategoriesPage';
+import TransactionsPage from '../pages/TransactionsPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
 
@@ -24,9 +25,9 @@ export const AppRouter = () => {
 
             {/* Core Modules */}
             <Route path="categories" element={<CategoriesPage />} />
+            <Route path="transactions" element={<TransactionsPage />} />
 
             {/* Module Placeholders mapped to LandingPage */}
-            <Route path="transactions" element={<LandingPage />} />
             <Route path="budgets" element={<LandingPage />} />
 
             <Route path="analytics" element={<LandingPage />} />

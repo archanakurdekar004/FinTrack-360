@@ -1,4 +1,5 @@
 import Category from '../models/Category.js';
+import Transaction from '../models/Transaction.js';
 import ApiError from '../utils/ApiError.js';
 
 export const DEFAULT_CATEGORIES = [
@@ -152,15 +153,11 @@ export class CategoryService {
 
   /**
    * Helper method to verify if a category is referenced by any financial records.
-   * Extensible for future Transaction, Budget, and RecurringTransaction models.
+   * Checks Transaction references (and extensible for future Budget / Recurring modules).
    */
-  static async checkCategoryReferences(_categoryId) {
-    // Currently no transaction or budget records exist yet.
-    // In future modules:
-    // const txCount = await Transaction.countDocuments({ categoryId });
-    // const budgetCount = await Budget.countDocuments({ categoryId });
-    // return txCount > 0 || budgetCount > 0;
-    return false;
+  static async checkCategoryReferences(categoryId) {
+    const txCount = await Transaction.countDocuments({ categoryId });
+    return txCount > 0;
   }
 }
 

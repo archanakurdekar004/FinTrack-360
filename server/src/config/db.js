@@ -16,11 +16,8 @@ export const connectDB = async () => {
     console.log(`[MongoDB] Database name: ${conn.connection.name}`);
   } catch (error) {
     console.error(`[MongoDB] Initial Connection Error: ${error.message}`);
-    // Don't kill process immediately during initial boot check if app handles reconnects,
-    // but in production container setup, exiting with failure triggers container restart.
-    if (process.env.NODE_ENV === 'production') {
-      process.exit(1);
-    }
+    // Throw error so the server process fails to start
+    throw error;
   }
 };
 
