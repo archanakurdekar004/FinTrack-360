@@ -60,17 +60,17 @@ export const updateTransactionSchema = z.object({
  * Zod validation schema for Transaction Query Parameters.
  */
 export const transactionQuerySchema = z.object({
-  type: z.enum(['expense', 'income']).optional(),
-  categoryId: z.string().regex(objectIdRegex, 'Invalid Category ID format').optional(),
-  paymentMethod: paymentMethodsEnum.optional(),
-  startDate: z
+  type: z.preprocess((val) => (val === '' ? undefined : val), z.enum(['expense', 'income']).optional()),
+  categoryId: z.preprocess((val) => (val === '' ? undefined : val), z.string().regex(objectIdRegex, 'Invalid Category ID format').optional()),
+  paymentMethod: z.preprocess((val) => (val === '' ? undefined : val), paymentMethodsEnum.optional()),
+  startDate: z.preprocess((val) => (val === '' ? undefined : val), z
     .string()
     .refine((val) => !isNaN(Date.parse(val)), { message: 'Invalid start date format' })
-    .optional(),
-  endDate: z
+    .optional()),
+  endDate: z.preprocess((val) => (val === '' ? undefined : val), z
     .string()
     .refine((val) => !isNaN(Date.parse(val)), { message: 'Invalid end date format' })
-    .optional(),
+    .optional()),
   search: z.string().trim().optional(),
   page: z.coerce.number().int().min(1).default(1),
   limit: z.coerce.number().int().min(1).max(100).default(20),

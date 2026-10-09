@@ -3,6 +3,7 @@ import healthRoutes from './healthRoutes.js';
 import authRoutes from './authRoutes.js';
 import categoryRoutes from './categoryRoutes.js';
 import transactionRoutes from './transactionRoutes.js';
+import budgetRoutes from './budgetRoutes.js';
 
 const router = Router();
 
@@ -11,6 +12,7 @@ router.use('/health', healthRoutes);
 router.use('/auth', authRoutes);
 router.use('/categories', categoryRoutes);
 router.use('/transactions', transactionRoutes);
+router.use('/budgets', budgetRoutes);
 
 
 

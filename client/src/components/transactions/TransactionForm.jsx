@@ -168,7 +168,7 @@ export const TransactionForm = ({ initialData, categories = [], onSubmit, onClos
                   step="0.01"
                   min="0.01"
                   placeholder="0.00"
-                  {...register('amount')}
+                  {...register('amount', { valueAsNumber: true })}
                   className={`w-full pl-9 pr-3 py-2 bg-slate-900 border rounded-lg text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 ${
                     errors.amount
                       ? 'border-rose-500/80 focus:ring-rose-500/40'
